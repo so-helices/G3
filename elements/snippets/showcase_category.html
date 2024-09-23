@@ -1,0 +1,88 @@
+{#
+{% set list = [] %}
+
+{% for category in categories %}
+
+    {% if list|length <= 5 %}
+        {% set product = Products({
+            'filter': ['featured','available'],
+            'limit': 1,
+            'categories': category.id
+        }) %}
+
+        {% if product[0] %}
+            {% set list = list|merge([{"image": product[0].images[0].large, "category": category }]) %} 
+        {% endif %}
+
+    {% endif %}
+
+{% endfor %}
+<div class="showcase-list-category">
+    <div class="container">
+        <div class="line">
+            <h2 class="title">{{ settings.text_category_home ? settings.text_category_home : 'Navegue por nossas categorias' }}</h2>
+            <div class="list flex {{ list|length == 6 ? 'justify-between' : 'justify-center' }} f-wrap">
+                {% for dots in list %}
+
+                        
+                    <div class="item">
+                        <a href="{{ dots.category.link }}">
+                            <div class="image">
+                                <img class="lazyload" src="{{ dots.image }}" alt="{{ dots.category.name }}">
+                            </div>
+                            <div class="name">{{ dots.category.name }}</div>
+                        </a>
+                    </div>  
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+#}
+
+
+{% set listCat = [] %}
+
+{% for i in 1..6 %}
+    {% set position = attribute(settings, 'category_'~i~'_position') %}
+    {% set id = attribute(settings, 'category_'~i~'_id') %}
+    {% set img = attribute(settings, 'category_'~i~'_image') %}
+    {% if id %}
+        {% set listCat = listCat|merge([{ "position": position, "id": id, "img": img }]) %}
+    {% endif %}
+{% endfor %}
+
+
+{% if listCat|length and settings.text_category_home %}
+<div class="showcase-list-category">
+    <div class="container">
+        <div class="line">
+            <h2 class="title">{{ settings.text_category_home ? settings.text_category_home : 'Navegue por nossas categorias' }}</h2>
+            <div class="list flex {{ listCat|length == 6 ? 'justify-between' : 'justify-center' }} f-wrap">
+                {% for i in 1..6 %}
+
+                    {% set loopParent = loop.index %}
+
+                    {% for list in listCat %}
+
+                        {% if list.position == loopParent %}
+
+                        {% set categoryGet = Categories( { "id": list.id } ) %}
+                            <div class="item">
+                                <a href="{{ categoryGet.link }}">
+                                    <div class="image">
+                                        <img class="lazyload" data-src="{{ asset(list.img) }}" alt="{{ categoryGet.name }}">
+                                    </div>
+                                    <div class="name">{{ categoryGet.name }}</div>
+                                </a>
+                            </div>  
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}

@@ -1,0 +1,66 @@
+{% if banners.extra5 or banners.extra6 or banners.extra7 or banners.extra8 or banners.extra9 %}
+    <h2 class="title-section">
+        <span>
+            {{ settings.text_banners ? settings.text_banners : "Lançamentos" }}
+        </span>
+    </h2>
+    <div class="mosaic">
+
+        {% if banners.extra5 %}
+
+            {% set link = banners.extra5.tracked_link ? banners.extra5.tracked_link : banners.extra5.link %}
+            <div class="item">
+                <a {% if link %} href="{{ link }}" target="{{ banners.extra5.target }}" {% endif %}>
+                    <img class="lazyload" data-src="{{ banners.extra5.src }}" alt="{{ banners.extra5.alt }}">
+                </a>
+            </div>
+
+        {% endif %}
+
+        {% if banners.extra6 %}
+
+            {% set link = banners.extra6.tracked_link ? banners.extra6.tracked_link : banners.extra6.link %}
+            <div class="item">
+                <a {% if link %} href="{{ link }}" target="{{ banners.extra6.target }}" {% endif %}>
+                    <img class="lazyload" data-src="{{ banners.extra6.src }}" alt="{{ banners.extra6.alt }}">
+                </a>
+            </div>
+
+        {% endif %}
+
+        {% if banners.extra7 %}
+
+            {% set link = banners.extra7.tracked_link ? banners.extra7.tracked_link : banners.extra7.link %}
+            <div class="item">
+                <a {% if link %} href="{{ link }}" target="{{ banners.extra7.target }}" {% endif %}>
+                    <img class="lazyload" data-src="{{ banners.extra7.src }}" alt="{{ banners.extra7.alt }}">
+                </a>
+            </div>
+
+        {% endif %}
+
+        {% if banners.extra8 %}
+
+            {% set link = banners.extra8.tracked_link ? banners.extra8.tracked_link : banners.extra8.link %}
+            <div class="item">
+                <a {% if link %} href="{{ link }}" target="{{ banners.extra8.target }}" {% endif %}>
+                    <img class="lazyload" data-src="{{ banners.extra8.src }}" alt="{{ banners.extra8.alt }}">
+                </a>
+            </div>
+
+
+        {% endif %}
+
+        {% if banners.extra9 %}
+
+            {% set link = banners.extra9.tracked_link ? banners.extra9.tracked_link : banners.extra9.link %}
+            <div class="item">
+                <a {% if link %} href="{{ link }}" target="{{ banners.extra9.target }}" {% endif %}>
+                    <img class="lazyload" data-src="{{ banners.extra9.src }}" alt="{{ banners.extra9.alt }}">
+                </a>
+            </div>
+
+        {% endif %}
+
+    </div>
+{% endif %}

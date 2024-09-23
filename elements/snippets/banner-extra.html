@@ -1,0 +1,34 @@
+{% if banners.extra3 or banners.extra4 %}
+<div class="section-banners-center" data-length="{{ (banners.extra3 and banners.extra4) ? '2' : '1' }}">    
+  
+    {% if banners.extra3 %}
+    <div class="item">
+        {% if banners.extra3.link %}
+        {% set link = banners.extra3.tracked_link ? banners.extra3.tracked_link : banners.extra3.link %}
+            <a {% if link %} href="{{ link }}"  target="{{ banners.extra3.target }}" {% endif %}>
+                <img class="lazyload" data-src="{{ banners.extra3.src }}" alt="{{ banners.extra3.alt }}">
+            </a>
+        {% else %}
+            <div>
+                <img class="lazyload" data-src="{{ banners.extra3.src }}" alt="{{ banners.extra3.alt }}">
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+     {% if banners.extra4 %}
+    <div class="item">
+        {% if banners.extra4.link %}
+        {% set link = banners.extra4.tracked_link ? banners.extra4.tracked_link : banners.extra4.link %}
+            <a {% if link %} href="{{ link }}"  target="{{ banners.extra4.target }}" {% endif %}>
+                <img class="lazyload" data-src="{{ banners.extra4.src }}" alt="{{ banners.extra4.alt }}">
+            </a>
+        {% else %}
+            <div>
+                <img class="lazyload" data-src="{{ banners.extra4.src }}" alt="{{ banners.extra4.alt }}">
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,37 @@
+{% if banners.extra2 or banners.extra10 %}
+    {% if banners.extra10 and utils.is_mobile %}
+
+        {% if banners.extra10.link %}
+            {% set link = banners.extra10.tracked_link ? banners.extra10.tracked_link : banners.extra10.link %}
+            <div class="banner-extra">
+                <a {% if link %} href="{{ link }}" target="{{ banners.extra10.target }}" {% endif %}>
+                    <img class="lazyload" data-src="{{ banners.extra10.src }}" alt="{{ banners.extra10.alt }}">
+                </a>
+            </div>
+        {% else %}
+            <div class="banner-extra">
+                <div>
+                    <img class="lazyload" data-src="{{ banners.extra10.src }}" alt="{{ banners.extra10.alt }}">
+                </div>
+            </div>
+        {% endif %}
+
+    {% else %}
+
+        {% if banners.extra2.link %}
+            {% set link = banners.extra2.tracked_link ? banners.extra2.tracked_link : banners.extra2.link %}
+            <div class="banner-extra">
+                <a {% if link %} href="{{ link }}" target="{{ banners.extra2.target }}" {% endif %}>
+                    <img class="lazyload" data-src="{{ banners.extra2.src }}" alt="{{ banners.extra2.alt }}">
+                </a>
+            </div>
+        {% else %}
+            <div class="banner-extra">
+                <div>
+                    <img class="lazyload" data-src="{{ banners.extra2.src }}" alt="{{ banners.extra2.alt }}">
+                </div>
+            </div>
+        {% endif %} 
+
+    {% endif %}
+{% endif %}
